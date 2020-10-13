@@ -6,20 +6,30 @@ from selectorlib import Extractor
 import requests
 import json
 import time
+import os
 
+#this fucntion opens chrome and goes to linked in and serach
 def get_jobs(job,location):
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    #Use the line below for install
+    #driver = webdriver.Chrome(ChromeDriverManager().install())
+    driver = webdriver.Chrome(r"C:\Users\Yung\.wdm\drivers\chromedriver\win32\85.0.4183.87\chromedriver.exe")
     driver.get("http://www.indeed.com")
-    #job search what id = "text-input-what"
-    #location where id = "text-input-where"
-    job_box = driver.find_element_by_id("text-input-what").send_keys(job)
-    #location_box = driver.find_element_by_id("text-input-where").clear()
+    #enters job string into what box
+    driver.find_element_by_id("text-input-what").send_keys(job)
+    
+    
+    #enters location into where box
+    #below is necessary for clearing preexisting location input
+    driver.find_element_by_id("text-input-where").send_keys(Keys.CONTROL + "a") #select everything in location
+    driver.find_element_by_id("text-input-where").send_keys(Keys.BACKSPACE)
+    
+    #enter location
+    driver.find_element_by_id("text-input-where").send_keys(location)
+    #press enter to search
+    driver.find_element_by_id("text-input-where").send_keys(Keys.ENTER)
     
     driver.implicitly_wait(1)
-    #location_box = driver.find_element_by_id("text-input-where").send_keys(location)
-    #icl-WhatWhere-buttonWrapper
-    #icl-Button icl-Button--primary icl-Button--md icl-WhatWhere-button
-    search_button = driver.find_element_by_class_name("icl-WhatWhere-buttonWrapper").click()
+
 
 
 get_jobs("data science", "New Jersey")
