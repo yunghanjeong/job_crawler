@@ -12,8 +12,10 @@ import os
 def get_jobs(job,location):
     #Use the line below for install
     #driver = webdriver.Chrome(ChromeDriverManager().install())
-    driver = webdriver.Chrome(r"C:\Users\Yung\.wdm\drivers\chromedriver\win32\85.0.4183.87\chromedriver.exe")
+    driver = webdriver.Chrome(r"C:\Users\Yung\.wdm\drivers\chromedriver\win32\85.0.4183.87\chromedriver.exe") #replace with your chromedriver location
+    #go to this website
     driver.get("http://www.indeed.com")
+    
     #enters job string into what box
     driver.find_element_by_id("text-input-what").send_keys(job)
     
@@ -28,7 +30,8 @@ def get_jobs(job,location):
     #press enter to search
     driver.find_element_by_id("text-input-where").send_keys(Keys.ENTER)
     
-    driver.implicitly_wait(1)
+    
+    #driver.implicitly_wait(1)
 
 
 
