@@ -44,6 +44,7 @@ class job_crawler():
         
     def get_html(self, url):
         req = requests.get(url)
+        
         soup = BeautifulSoup(req.content, "html.parser")
         return soup
 
